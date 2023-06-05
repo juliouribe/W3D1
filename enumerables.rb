@@ -75,5 +75,32 @@ class Array
     arr
   end
 
+  def my_join(string = "")
+	new_str = ""
+	self.each_with_index do |ele, idx|
+		if idx == self.length - 1
+			new_str += ele 
+		else
+			new_str += ele + string
+		end
+	end
+	new_str
+  end
   
+  def my_reverse
+	arr = []
+	self.each do |ele|
+		arr = [ele] + arr
+	end
+	arr 
+  end
+
+  # without a proc, sort as is, with proc sort using result
+  def bubble_sort!(&prc)
+
+  end
+end
+
+def factors(num)
+	(1..num).select {|div| num % div == 0}
 end
