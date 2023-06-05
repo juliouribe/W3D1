@@ -119,8 +119,44 @@ class Array
     end
     self
   end
+
+  def bubble_sort(&prc)
+	# Sort
+	arr = self.map {|ele| ele}
+	
+    sorted = false
+    while !sorted
+      i = 0
+      sorted = true
+      while i < arr.length - 1
+        if prc.nil?
+          if arr[i+1] < arr[i]
+            arr[i], arr[i+1] = arr[i+1], arr[i]
+            sorted = false
+          end
+        else
+          if prc.call(arr[i+1]) < prc.call(arr[i])
+            arr[i], arr[i+1] = arr[i+1], arr[i]
+            sorted = false
+          end
+        end
+        i += 1
+      end
+    end
+    arr
+  end
 end
 
 def factors(num)
 	(1..num).select {|div| num % div == 0}
+end
+
+def substrings(string)
+	subs = []
+	(0...string.length).each do |idx|
+		(1..string.length - 1).each do |len|
+			subs << string[idx, len]
+		end
+	end
+	subs
 end
