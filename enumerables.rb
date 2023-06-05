@@ -37,11 +37,17 @@ class Array
   end
 
   def my_flatten
-    return [data] if data.is_a?(Array)
-
     flattened = []
     self.my_each do |ele|
-      flattened << my_flatten(ele)
+		if ele.is_a?(Array)
+      		flattened += ele.my_flatten
+		else
+			flattened << ele
+		end
     end
+	flattened
+  end
+
+  def my_zip()
   end
 end
