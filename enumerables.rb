@@ -123,7 +123,7 @@ class Array
   def bubble_sort(&prc)
 	# Sort
 	arr = self.map {|ele| ele}
-	
+
     sorted = false
     while !sorted
       i = 0
@@ -154,9 +154,14 @@ end
 def substrings(string)
 	subs = []
 	(0...string.length).each do |idx|
-		(1..string.length - 1).each do |len|
+		(1..string.length - idx).each do |len|
 			subs << string[idx, len]
 		end
 	end
 	subs
+end
+
+def subwords(word, dictionary)
+  subs = substrings(word)
+  subs.select { |ele| dictionary.include?(ele) }
 end
