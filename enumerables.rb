@@ -79,25 +79,45 @@ class Array
 	new_str = ""
 	self.each_with_index do |ele, idx|
 		if idx == self.length - 1
-			new_str += ele 
+			new_str += ele
 		else
 			new_str += ele + string
 		end
 	end
 	new_str
   end
-  
+
   def my_reverse
 	arr = []
 	self.each do |ele|
 		arr = [ele] + arr
 	end
-	arr 
+	arr
   end
 
   # without a proc, sort as is, with proc sort using result
   def bubble_sort!(&prc)
-
+    # Sort
+    sorted = false
+    while !sorted
+      i = 0
+      sorted = true
+      while i < self.length - 1
+        if prc.nil?
+          if self[i+1] < self[i]
+            self[i], self[i+1] = self[i+1], self[i]
+            sorted = false
+          end
+        else
+          if prc.call(self[i+1]) < prc.call(self[i])
+            self[i], self[i+1] = self[i+1], self[i]
+            sorted = false
+          end
+        end
+        i += 1
+      end
+    end
+    self
   end
 end
 
